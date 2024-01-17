@@ -6,9 +6,11 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
     {
         static void Main(string[] args)
         {
+            const int RANGE_START = 0;
+            const int RANGE_END = 100;
             string input;
             Random rng = new Random();
-            int randomNumber = rng.Next(0, 100);
+            int randomNumber = rng.Next(RANGE_START, RANGE_END);
             Console.WriteLine("***********-Number Guessing Game-***********");
             Console.Write("Enter the Max number of guesses: ");
             input = Console.ReadLine();
