@@ -8,6 +8,8 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
         {
             const int RANGE_START = 0;
             const int RANGE_END = 100;
+            const int CLOSE_GUESS_HIGH = 5;
+            const int CLOSE_GUESS_LOW = -5;
             string input;
             Random rng = new Random();
             int randomNumber = rng.Next(RANGE_START, RANGE_END);
@@ -27,7 +29,7 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
 
                 int guess = int.Parse(input);
 
-                if(guess < 0){
+                if(guess < RANGE_START){
                     Console.WriteLine("Your guess must be a positive integer");
                     continue;
                 }
@@ -39,7 +41,7 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
                     return;
                 } 
 
-                if(difference >= -5 & difference <= 5){
+                if(difference >= CLOSE_GUESS_LOW & difference <= CLOSE_GUESS_HIGH){
                     Console.WriteLine("You're close");
                     continue;
                 }
