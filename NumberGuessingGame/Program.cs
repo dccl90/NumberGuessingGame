@@ -6,8 +6,8 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
     {
         static void Main(string[] args)
         {
-            const int RANGE_START = 0;
-            const int RANGE_END = 100;
+            const int RANGE_START = 1;
+            const int RANGE_END = 101;
             const int CLOSE_GUESS_HIGH = 5;
             const int CLOSE_GUESS_LOW = -5;
             string input;
@@ -18,40 +18,53 @@ namespace NumberGuessingGame // Note: actual namespace depends on the project na
             input = Console.ReadLine();
             int maxGuesses = int.Parse(input);
 
-            if(maxGuesses <= 0) {
+            if(maxGuesses <= 0) 
+            {
                 Console.WriteLine("The values for the max number of guesses must be a positive integer");
                 return;
             }
-
-            for(int i = 0; i < maxGuesses; i++) {
-                Console.Write("Please enter a number between 1 and 100: ");
+            
+            int i = 0;
+            while(i < maxGuesses) 
+            {
+                i++;
+                Console.Write($"Please enter a number between {RANGE_START} and {RANGE_END - RANGE_START}: ");
                 input = Console.ReadLine();
 
                 int guess = int.Parse(input);
 
-                if(guess < RANGE_START){
+                if(guess < RANGE_START)
+                {
                     Console.WriteLine("Your guess must be a positive integer");
+                    i--;
                     continue;
                 }
 
-                int difference = randomNumber - guess;
-
-                if(guess == randomNumber){
+                if(guess == randomNumber)
+                {
                     Console.WriteLine($"Correct, the number is {guess}");
                     return;
                 } 
+                
+                int difference = randomNumber - guess;
 
-                if(difference >= CLOSE_GUESS_LOW & difference <= CLOSE_GUESS_HIGH){
+                if(difference >= CLOSE_GUESS_LOW && difference <= CLOSE_GUESS_HIGH)
+                {
                     Console.WriteLine("You're close");
-                    continue;
                 }
 
-                if(guess < randomNumber){
+                if(guess < randomNumber)
+                {
                     Console.WriteLine("Guess was to low");
                 }
 
-                if(guess > randomNumber){
+                if(guess > randomNumber)
+                {
                     Console.WriteLine("Guess was to high");
+                }
+
+                if(i == maxGuesses){
+                    Console.WriteLine($"Sorry you lost after {maxGuesses} attempts");
                 }
             }
         }
